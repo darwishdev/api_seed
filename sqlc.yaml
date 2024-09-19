@@ -1,0 +1,22 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "./common/db/query/"
+    schema: "../abc_api/supabase/migrations/"
+    gen:
+      go:
+        package: "db"
+        out: "./common/db/gen"
+        overrides:
+          - db_type: "uuid"
+            go_type: "string"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_interface: true
+        emit_prepared_queries: true
+        emit_empty_slices: true
+
+    database:
+      uri: "postgres://dev:Avec@2290100@${DB_HOST}:localhost/mln_rms_core?sslmode=disable"
+    rules:
+      - sqlc/db-prepare

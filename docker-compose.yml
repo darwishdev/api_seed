@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mln_data_pool
+    restart: always
+    volumes:
+      - ./config:/app/config 
+      - ./data:/app/data
+    image: mln_data_pool
+    ports:
+      - 3000:3000 
+
+
+networks:
+  default:
+    name: postgres_network
+    external: true
