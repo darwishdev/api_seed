@@ -8,7 +8,6 @@ func (r *StorageRoutes) SeedStorage(c *fiber.Ctx) error {
 
 	err := r.service.BucketCreateImages(c.Context())
 	if err != nil {
-		return err
 	}
 	err = r.service.UploadInitialImages(c.Context())
 	if err != nil {

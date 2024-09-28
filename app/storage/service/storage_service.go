@@ -3,13 +3,13 @@ package service
 import (
 	"bytes"
 	"context"
+	"fmt"
+	"github.com/meloneg/mln_data_pool/supabase"
+	"github.com/meloneg/mln_data_pool/supaclient"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/meloneg/mln_data_pool/supabase"
-	"github.com/meloneg/mln_data_pool/supaclient"
 )
 
 // var publicImageBucketName = "image"
@@ -64,7 +64,13 @@ func (s *StorageService) UploadInitialImages(c context.Context) error {
 						Reader:     imageData,
 						FileType:   "image/" + extension[1:],
 					}
-					s.supa.BucketUpload(req)
+
+					_, err = s.supa.BucketUpload(req)
+
+					if err != nil {
+						// Log the error but don't stop the execution
+						fmt.Printf("Failed to upload %s: %v\n", info.Name(), err)
+					}
 				}
 			}
 

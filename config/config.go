@@ -21,7 +21,6 @@ type Config struct {
 	FiberPort         string `mapstructure:"FIBER_PORT"`
 	FiberHost         string `mapstructure:"FIBER_HOST"`
 	HTTPServerAddress string `mapstructure:"HTTP_SERVER_ADDRESS"`
-	AccessToken       string
 	SupaUrl           string `mapstructure:"SUPA_URL"`
 	SupaKey           string `mapstructure:"SUPA_KEY"`
 }
