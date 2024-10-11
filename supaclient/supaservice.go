@@ -5,6 +5,7 @@ import (
 	"io"
 
 	"github.com/meloneg/mln_data_pool/supabase"
+	"github.com/rs/zerolog/log"
 	// supa "github.com/darwishdev/supabase-go"
 )
 
@@ -19,7 +20,9 @@ func (s *SupabaseService) SingIn(c context.Context, req supabase.UserCredentials
 func (s *SupabaseService) SignUp(c context.Context, req supabase.UserCredentials) (user *supabase.AuthenticatedDetails, err error) {
 	user, err = s.Client.Auth.SignUp(c, req)
 	if err != nil {
+		log.Debug().Interface("smerr", err).Msg("supaservice")
 		return nil, err
+
 	}
 
 	return user, nil
